@@ -23,7 +23,7 @@ public class Student extends User {
     private String roleType;
 
     @Id
-    @AutoPlusId
+    @Column(name = "user_id")
     private int userId;
 
     @Column(name = "student_num")
@@ -42,7 +42,7 @@ public class Student extends User {
     private int classNum;
 
     //已选课程数量
-    @Column(name = "amount_select_course")
+    @Column(name = "amount_selected_courses")
     private int amountSelectCourse;
 
     @Column(name = "is_del")

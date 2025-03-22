@@ -3,6 +3,7 @@ package model;
 import DataBaseConnectPool.ORM.AutoPlusId;
 import DataBaseConnectPool.ORM.Column;
 import DataBaseConnectPool.ORM.DataEntity;
+import DataBaseConnectPool.ORM.Id;
 
 /**
  * 用户类
@@ -10,6 +11,7 @@ import DataBaseConnectPool.ORM.DataEntity;
 @DataEntity(tableName = "users")
 public class User {
     @AutoPlusId
+    @Id
     @Column(name = "user_id")
     private int userId;
 

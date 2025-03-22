@@ -4,6 +4,8 @@ import DataBaseConnectPool.Dao;
 
 import java.util.logging.Logger;
 
+import static model.MyScanner.scanner;
+
 /**
  * 注册机，用于注册新用户
  * 只有管理员才能注册新用户
@@ -35,8 +37,13 @@ public class Register {
             if(dao.selectClass(User.class,"username='"+user.getUsername()+"'"+" and email='"+user.getEmail()+"'")==null){
                 //注册用户
                 if(dao.add(user)>0) {
+                    user=dao.selectClass(User.class,"username='"+user.getUsername()+"'"+" and email='"+user.getEmail()+"' and is_del=0");
                     if(user.getRoleType().equals("STUDENT")){
+                        //如果是学生，则输入学号
+                        System.out.println("请输入学号：");
+                        String studentNum=scanner.nextLine();
                         Student student=new Student();
+                        student.setStudentNum(studentNum);
                         student.setUserId(user.getUserId());
                         student.setUsername(user.getUsername());
                         student.setPassword(user.getPassword());
@@ -45,7 +52,6 @@ public class Register {
                         student.setRoleType(user.getRoleType());
                         student.setIsDel(0);
                         student.setAmountSelectCourse(0);
-                        student.setStudentNum("111111");
                         student.setCollegeId(1);
                         student.setMajorId(1);
                         student.setGrade(1);

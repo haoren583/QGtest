@@ -179,11 +179,20 @@ public class SQLGenerator {
         }
         //寻找主键字段
         String primaryKeyFieldName = null;
+        String primaryKeyValue = null;
         for (int i = 0; i < fieldNames.size(); i++) {
             // 判断是否有@Id注解
             if (fields[i].isAnnotationPresent(Id.class)) {
                 //获取主键字段名
                 primaryKeyFieldName = fieldNames.get(i);
+                //获取主键字段值
+                //如果字段值为字符串，需要加单引号
+                Object fieldValue = columnFields.get(i).get(entity);
+                if (fieldValue instanceof String) {
+                    primaryKeyValue = "'" + fieldValue + "'";
+                } else {
+                    primaryKeyValue = fieldValue.toString();
+                }
                 break;
             }
         }
@@ -193,7 +202,7 @@ public class SQLGenerator {
         }
 
         // 构建WHERE语句
-        String where = "id = " + primaryKeyFieldName;
+        String where = primaryKeyFieldName + " = " + primaryKeyValue;
         sql.append(" WHERE ").append(where);
         return sql.toString();
     }

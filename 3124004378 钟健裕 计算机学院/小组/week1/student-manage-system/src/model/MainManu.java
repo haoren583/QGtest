@@ -4,6 +4,7 @@ import DataBaseConnectPool.Dao;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static model.MyScanner.scanner;
@@ -23,10 +24,10 @@ public class MainManu {
         System.out.println("登录");
         SignIn signIn = new SignIn();
 
-        System.out.print("请输入电话号码：");
-        String phone = scanner.next();
-        System.out.print("请输入密码：");
-        String password = scanner.next();
+        System.out.println("请输入电话号码：");
+        String phone = scanner.nextLine();
+        System.out.println("请输入密码：");
+        String password = scanner.nextLine();
         User user = signIn.signIn(phone, password);
         if (user != null) {
             System.out.println("登录成功");
@@ -77,21 +78,29 @@ public class MainManu {
         Register register=new Register();
 
         System.out.print("请输入姓名：");
-        String name = scanner.next();
+        String name = scanner.nextLine();
 
         System.out.print("请输入性别：");
-        String gender = scanner.next();
         int sex = 0;
-        if (gender.equals("男")) {
-            sex = 1;
+        while (true) {
+            String gender = scanner.nextLine();
+            if (gender.equals("男")) {
+                sex = 1;
+                break;
+            } else if (gender.equals("女")) {
+                sex = 0;
+                break;
+            } else {
+                System.out.println("性别输入错误，请重新输入");
+                continue;
+            }
         }
-
         System.out.print("请输入用户类型：输入 1 代表学生，2 代表管理员");
-        int roleType = scanner.nextInt();
+        String roleType = scanner.nextLine();
         String roleTypeStr = "";
-        if (roleType == 1) {
+        if (Objects.equals(roleType, "1")) {
         roleTypeStr = "STUDENT";
-        } else if (roleType == 2) {
+        } else if (Objects.equals(roleType, "2")) {
             roleTypeStr = "ADMIN";
         }
 
@@ -136,7 +145,14 @@ public class MainManu {
         System.out.println("请选择操作（输入 1-3）：");
 
         while (true) {
-            int choice = scanner.nextInt();
+            String input = scanner.nextLine();
+            int choice = 0;
+            if (input.matches("\\d+")) {
+                choice = Integer.parseInt(input);
+            } else {
+                System.out.println("输入错误，请重新输入");
+                continue;
+            }
             switch (choice) {
                 case 1:
                     //登录

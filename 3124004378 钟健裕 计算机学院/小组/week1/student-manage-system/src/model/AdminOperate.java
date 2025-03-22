@@ -45,7 +45,7 @@ public class AdminOperate {
         System.out.println("键入E退出");
         String exit;
         while (true) {
-            exit = scanner.next();
+            exit = scanner.nextLine();
             if ("E".equals(exit)) {
                 System.out.println("===== 管理员菜单 =====");
                 System.out.println("1. 查询所有学生");
@@ -68,7 +68,7 @@ public class AdminOperate {
         System.out.println("键入E退出当前输入");
         //获取输入的原手机号和新手机号
         System.out.println("\n输入原手机号：");
-        String oldPhone = scanner.next();
+        String oldPhone = scanner.nextLine();
         System.out.println("输入密码：");
         String password = scanner.next();
         //验证密码是否正确
@@ -95,7 +95,7 @@ public class AdminOperate {
         System.out.println("键入E退出");
         String exit;
         while (true) {
-            exit = scanner.next();
+            exit = scanner.nextLine();
             if (exit.equals("E")) {
                 System.out.println("===== 管理员菜单 =====");
                 System.out.println("1. 查询所有学生");
@@ -122,10 +122,11 @@ public class AdminOperate {
             ResultSet rs = dao.selectClass(Course.class, "");
             if(rs==null){
                 System.out.println("没有查询到相关课程");
-            }
-            while (rs.next()) {
-                course = ResultSetToObject.resultSetToObject(rs, Course.class);
-                System.out.println(course.toString());
+            }else {
+                while (rs.next()) {
+                    course = ResultSetToObject.resultSetToObject(rs, Course.class);
+                    System.out.println(course.toString());
+                }
             }
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
@@ -142,7 +143,7 @@ public class AdminOperate {
         System.out.println("键入E退出");
         String exit;
         while (true) {
-            exit = scanner.next();
+            exit = scanner.nextLine();
             if (exit.equals("E")) {
                 System.out.println("===== 管理员菜单 =====");
                 System.out.println("1. 查询所有学生");
@@ -172,12 +173,23 @@ public class AdminOperate {
             System.out.println("当前课程分数：");
             System.out.println(course.getScore());
             System.out.println("请输入修改后的分数：");
-            int score = scanner.nextInt();
-            course.setScore(score);
+            int scoreInt = 0;
+            while (true) {
+                String score = scanner.nextLine();
+                //将score转为int类型
+                //如果score不是数字，则提示错误
+                if (!score.matches("\\d+")) {
+                    System.out.println("分数输入错误，请输入数字！");
+                    continue;
+                }
+                scoreInt = Integer.parseInt(score);
+                break;
+            }
+            course.setScore(scoreInt);
             dao.change(course);
             while(re.next()){
                 course= ResultSetToObject.resultSetToObject(re, Course.class);
-                course.setScore(score);
+                course.setScore(scoreInt);
                 dao.change(course);
             }
         }else{
@@ -301,26 +313,25 @@ public class AdminOperate {
 
             String choice;
             choice = scanner.nextLine();
-            scanner.nextLine();
-            if (choice.equals("1")) {
+            if ("1".equals(choice)) {
                 //查询所有学生
                 selectAllStudents();
-            } else if (choice.equals("2")) {
+            } else if ("2".equals(choice)) {
                 //修改学生手机号
                 updateStudentPhone();
-                } else if (choice.equals("3")) {
+                } else if ("3".equals(choice)) {
                 //查询所有课程
                 selectAllCourses();
-            } else if (choice.equals("4")) {
+            } else if ("4".equals(choice)) {
                 //修改课程学分
                 updateCourseCredit();
-            } else if (choice.equals("5")) {
+            } else if ("5".equals(choice)) {
                 //查询某课程的学生名单
                 selectCourseStudents();
-            } else if (choice.equals("6")) {
+            } else if ("6".equals(choice)) {
                 //查询某学生的选课情况
                 selectStudentCourses();
-            } else if (choice.equals("7")) {
+            } else if ("7".equals(choice)) {
                 System.out.println("退出");
                 System.out.println("=======================================");
                 System.out.println("学生选课管理系统");

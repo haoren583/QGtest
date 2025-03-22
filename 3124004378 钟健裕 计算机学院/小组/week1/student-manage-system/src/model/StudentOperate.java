@@ -53,7 +53,7 @@ public class StudentOperate {
             System.out.println("选课");
             System.out.println("请输入你要选的课程编号：");
             // 从控制台获取输入的课程编号
-            int courseId = scanner.nextInt();
+            String courseId=scanner.nextLine();
             // 从数据库中查询课程信息
             Dao dao = new Dao();
             Course course = dao.selectClass(Course.class, "course_id=" + courseId+" , is_del=0");
@@ -127,7 +127,6 @@ public class StudentOperate {
     public void CancelCourse() throws IllegalAccessException {
         // 从数据库中查询学生选课信息
         Dao dao=new Dao();
-        Scanner scanner=new Scanner(System.in);
         List<StudentCourses> studentCoursesList=dao.selectList(StudentCourses.class,"student_id="+student.getUserId());
         if(studentCoursesList!=null||studentCoursesList.size()>0){
             System.out.println("退课");
@@ -136,9 +135,10 @@ public class StudentOperate {
             }
             System.out.println("请输入你要退的课程编号：");
             // 从控制台获取输入的课程编号
-            int courseId=scanner.nextInt();
+            String courseId=scanner.nextLine();
+
             for(StudentCourses studentCourses:studentCoursesList){
-                if(studentCourses.getCourseId()==courseId){
+                if(String.valueOf(studentCourses.getCourseId()).equals(courseId)){
                     // 找到要退的课程，更新学生选课信息
                     student.setAmountSelectCourse(student.getAmountSelectCourse()-1);
                     dao.change(student);
@@ -175,14 +175,16 @@ public class StudentOperate {
      */
     public void changeEmail() throws IllegalAccessException {
         // 从控制台获取输入的新email
-        Scanner scanner=new Scanner(System.in);
         System.out.println("请输入新email：");
-        String newEmail=scanner.next();
+        String newEmail=scanner.nextLine();
         // 更新学生信息
         student.setEmail(newEmail);
         Dao dao=new Dao();
-        dao.change(student);
+        User user=dao.selectClass(User.class,"user_id="+student.getUserId());
+        user.setEmail(newEmail);
+        dao.change(user);
         System.out.println("修改成功");
+        return;
     }
 
     public void operate() throws IllegalAccessException {
@@ -198,29 +200,34 @@ public class StudentOperate {
             System.out.println("6. 退出");
             System.out.println("请选择操作（输入 1-6）：");
 
-            choice = scanner.nextInt();
-            // 清除缓冲区
-            scanner.nextLine();
+            String input = scanner.nextLine();
+            if(!input.matches("\\d+")){
+                System.out.println("无效的选择，请输入 1-6");
+                continue;
+            }else {
+                choice = Integer.parseInt(input);
+            }
 
             switch (choice) {
                 case 1:
                     QuerySelectableCourse();
+                    break;
                 case 2:
                     // 实现选择课程的功能
                     SelectCourse();
-                    System.out.println("选择课程");
+                    break;
                 case 3:
                     // 实现退选课程的功能
                     CancelCourse();
-                    System.out.println("退选课程");
+                    break;
                 case 4:
                     // 实现查看已选课程的功能
                     ViewSelectedCourse();
-                    System.out.println("查看已选课程");
+                    break;
                 case 5:
                     // 实现修改手机号的功能
                     changeEmail();
-                    System.out.println("修改手机号");
+                    break;
                 case 6:
                     // 退出学生操作
                     System.out.println("退出");
