@@ -1,0 +1,13 @@
+package DataBaseConnectPool.ORM;
+
+import java.lang.annotation.*;
+/**
+ * 映射字段名与数据库列名
+ * @author 钟健裕
+ */
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Column {
+    //映射的数据库列名
+   String name();
+}
