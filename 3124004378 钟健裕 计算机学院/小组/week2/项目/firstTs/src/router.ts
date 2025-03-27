@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 import Home from './components/Home.vue'
@@ -25,7 +25,7 @@ const routers = [
 
 //创建路由实例
 const router = createRouter({
-    history: createWebHistory(),//
+    history: createWebHashHistory(),//
     routes: routers//将之前定义的路由配置数组 routers 传递给路由器。
 })
 

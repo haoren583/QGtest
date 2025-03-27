@@ -1,5 +1,0 @@
-﻿  main.c
-C:\Users\钟健裕\source\repos\counter\main.c(36,17): warning C4244: “初始化”: 从“__int64”转换到“int”，可能丢失数据
-C:\Users\钟健裕\source\repos\counter\main.c(168,20): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
-C:\Users\钟健裕\source\repos\counter\main.c(30,1): warning C4715: “count1”: 不是所有的控件路径都返回值
-  counter.vcxproj -> C:\Users\钟健裕\source\repos\counter\x64\Debug\counter.exe

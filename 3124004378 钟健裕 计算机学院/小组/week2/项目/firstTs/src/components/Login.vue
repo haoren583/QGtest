@@ -105,7 +105,7 @@ function LoginSubmit(loginFormRef) {
 		top: calc(50vh - 330px);
 		left: calc(50vw - 250px);
 		border-radius: 20px;
-		background: linear-gradient(to right, rgba(93, 0, 255, 0.1), rgba(255, 0, 4, 0.1));
+		background: linear-gradient(to right, rgba(66, 2, 177, 0.219), rgba(255, 0, 4, 0.1));
 	}
 
 	.head {
