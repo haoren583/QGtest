@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Hospital-Appointment-Registration-Manage:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hospital_Appointment_Registration_Manage_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Hospital-Appointment-Registration-Manage/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Hospital-Appointment-Registration-Manage" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

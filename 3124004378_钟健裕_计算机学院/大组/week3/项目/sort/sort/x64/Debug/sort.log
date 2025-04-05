@@ -1,0 +1,3 @@
+﻿  FileName.cpp
+C:\Users\钟健裕\source\repos\sort\FileName.cpp(216,15): warning C4244: “参数”: 从“time_t”转换到“unsigned int”，可能丢失数据
+  sort.vcxproj -> C:\Users\钟健裕\source\repos\sort\x64\Debug\sort.exe
