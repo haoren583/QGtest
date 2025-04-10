@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="student-manage-system:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/student_manage_system_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="student-manage-system" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.mysql:mysql-connector-j:8.2.0" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.21.9" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.15.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.15.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.15.2" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2" />
+          <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+          <element id="library" level="project" name="Maven: org.testng:testng:7.11.0" />
+          <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:2.0.16" />
+          <element id="library" level="project" name="Maven: org.jcommander:jcommander:1.83" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:3.7.1" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="student-manage-system/web/Web" />
+    </root>
+  </artifact>
+</component>
